@@ -1,7 +1,7 @@
 # Jadeface
 > A E-Book manager which supports Kindle (Frontend). 
 
-[GoldenHouse(Backend)](https://github.com/EarlySpringCommitee/GoldenHouse)
+[GoldenHouse (Backend)](https://github.com/EarlySpringCommitee/GoldenHouse)
 
 ## Build Setup
 
