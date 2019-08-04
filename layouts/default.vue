@@ -1,7 +1,7 @@
 <template>
-	<v-app dark>
+	<v-app>
 		<v-navigation-drawer v-model="drawer" clipped fixed app>
-			<v-list>
+			<v-list shaped>
 				<v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
 					<v-list-item-action>
 						<v-icon>{{ item.icon }}</v-icon>
@@ -14,8 +14,11 @@
 		</v-navigation-drawer>
 		<v-app-bar clipped-left fixed app>
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-			<v-toolbar-title v-text="'Jadeface'" />
+			<v-toolbar-title>Jadeface</v-toolbar-title>
 			<v-spacer />
+			<v-btn text icon @click.stop="changetheme">
+				<v-icon>mdi-theme-light-dark</v-icon>
+			</v-btn>
 		</v-app-bar>
 		<v-content>
 			<v-container grid-list-md>
@@ -51,9 +54,14 @@ export default {
 			{
 				icon: "mdi-card-text",
 				title: "紀錄",
-				to: "/inspire"
+				to: "/log"
 			}
 		]
-	})
+	}),
+	methods: {
+		changetheme() {
+			this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+		}
+	}
 };
 </script>
