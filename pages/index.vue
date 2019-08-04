@@ -15,25 +15,9 @@
 		</v-flex>
 		<v-flex>
 			<v-card>
-				<v-card-title class="headline">最近新增</v-card-title>
-				<v-container grid-list-md>
-					<v-layout wrap>
-						<v-flex v-for="item in recent" :key="item.uuid" xs6 md4>
-							<v-item>
-								<v-card>
-									<v-img class="white--text" height="200px" :src="item.img" />
-									<v-card-title>{{item.name}}</v-card-title>
-									<v-card-text>{{item.author}}</v-card-text>
-									<v-card-actions>
-										<v-spacer />
-										<v-btn color="primary" outlined>詳細資料</v-btn>
-										<v-btn color="primary">發送到 Kindle</v-btn>
-									</v-card-actions>
-								</v-card>
-							</v-item>
-						</v-flex>
-					</v-layout>
-				</v-container>
+				<parse-books :books="recent">
+					<v-card-title class="headline">最近新增</v-card-title>
+				</parse-books>
 			</v-card>
 		</v-flex>
 		<v-flex>

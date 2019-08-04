@@ -44,7 +44,7 @@ export default {
 			{
 				icon: "mdi-book-multiple",
 				title: "書庫",
-				to: "/inspire"
+				to: "/books"
 			},
 			{
 				icon: "mdi-shape",
