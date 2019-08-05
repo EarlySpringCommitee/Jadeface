@@ -83,9 +83,10 @@ export default {
 			this.seriesDialog = true;
 		},
 		async deleteItem(item) {
-			const index = this.series.indexOf(item);
 			if (!confirm("尼確定要殺掉他嗎")) return;
-			await this.$axios.delete(`series`, { series: [{ id: index }] });
+			await this.$axios.delete(`series`, {
+				data: { series: [{ id: [item.id] }] }
+			});
 			this.fetchData();
 		},
 		close() {
