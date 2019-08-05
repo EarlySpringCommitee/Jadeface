@@ -1,22 +1,21 @@
 <template>
-	<parse-books :books="recent" />
-</template><script>
+	<div>
+		<parse-books :books="books" v-if="books" />
+		<pre>{{books}}</pre>
+	</div>
+</template>
+<script>
 export default {
+	async created() {
+		this.fetchData();
+	},
 	data: () => ({
-		recent: [
-			{
-				name: "逼比探險記",
-				img: "https://picsum.photos/1200/1200?5",
-				author: "逼比",
-				uuid: "biib1069"
-			},
-			{
-				name: "逼比買了動物園",
-				img: "https://picsum.photos/1200/1200?1",
-				author: "逼比",
-				uuid: "bibi1069"
-			}
-		]
-	})
+		books: null
+	}),
+	methods: {
+		async fetchData() {
+			this.books = (await this.$axios.get("book")).data;
+		}
+	}
 };
 </script>

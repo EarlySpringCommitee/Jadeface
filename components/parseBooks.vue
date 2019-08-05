@@ -14,12 +14,12 @@
 		</v-layout>
 		<br />
 		<v-layout v-if="view==='card'" wrap>
-			<v-flex v-for="item in books" :key="item.uuid" xs6 md4>
+			<v-flex v-for="item in books" :key="item.uuid" xs6 md3>
 				<v-item>
 					<v-card>
-						<v-img class="white--text" height="200px" :src="item.img" />
-						<v-card-title>{{item.name}}</v-card-title>
-						<v-card-text>{{item.author}}</v-card-text>
+						<v-img class="white--text" height="500px" :src="'http://172.25.24.2:3000/'+item.cover_id" />
+						<v-card-title>{{item.title}}</v-card-title>
+						<v-card-text>{{item.desc}}</v-card-text>
 						<v-card-actions>
 							<v-spacer />
 							<v-btn color="primary" outlined>詳細資料</v-btn>
@@ -45,9 +45,9 @@ export default {
 	data: () => ({
 		view: "card",
 		headers: [
-			{ text: "標題", value: "name" },
-			{ text: "作者", value: "author" },
-			{ text: "操作", value: "actions", sortable: false }
+			{ text: "標題", value: "title" },
+			{ text: "簡介", value: "desc" },
+			{ text: "", value: "actions", sortable: false }
 		]
 	})
 };
