@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<parse-books :books="books" v-if="books" />
-		<pre>{{books}}</pre>
+		<!--<pre>{{books}}</pre>-->
 	</div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
 	}),
 	methods: {
 		async fetchData() {
-			this.books = (await this.$axios.get("book")).data;
+			this.books = (await this.$axios.get("book?filetype=mobi")).data;
 		}
 	}
 };
