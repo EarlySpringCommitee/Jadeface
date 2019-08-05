@@ -2,8 +2,7 @@
 	<v-layout column justify-center align-center>
 		<v-flex xs12 sm8 md6>
 			<v-alert text color="error" min-width="400">
-				<h3 class="headline">糟糕！發生了錯誤</h3>
-				<div>{{error.statusCode === 404? pageNotFound:otherError }}</div>
+				<h3 class="headline">{{error.statusCode === 404? pageNotFound:otherError }}</h3>
 				<v-divider class="my-4 error" style="opacity: 0.22"></v-divider>
 				<v-layout align-center>
 					<v-spacer></v-spacer>
@@ -33,7 +32,7 @@ export default {
 	data() {
 		return {
 			pageNotFound: "404 找不到頁面",
-			otherError: "發生了錯誤"
+			otherError: "糟糕！發生了錯誤 🙁"
 		};
 	}
 };
