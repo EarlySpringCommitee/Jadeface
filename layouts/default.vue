@@ -42,6 +42,11 @@ export default {
 				to: "/"
 			},
 			{
+				icon: "mdi-cloud-upload",
+				title: "上傳書本",
+				to: "/upload"
+			},
+			{
 				icon: "mdi-book-multiple",
 				title: "書庫",
 				to: "/books"
