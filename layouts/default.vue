@@ -48,8 +48,8 @@ export default {
 			},
 			{
 				icon: "mdi-shape",
-				title: "分類",
-				to: "/inspire"
+				title: "系列",
+				to: "/series"
 			},
 			{
 				icon: "mdi-card-text",
