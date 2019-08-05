@@ -11,7 +11,7 @@
 				<v-text-field v-model="bookno" label="冊數" outlined></v-text-field>
 			</v-flex>
 		</v-layout>
-		<v-layout column v-if="bookseries&&bookno">
+		<v-layout column v-if="bookseries&&bookno>0">
 			<v-flex>
 				<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" useCustomSlot>
 					<div class="dropzone-custom-content">
@@ -59,8 +59,8 @@ export default {
 	data: () => ({
 		series: null,
 		seriesTitle: null,
-		bookseries: "",
-		bookno: Math.round(Math.random() * 999),
+		bookseries: null,
+		bookno: null,
 		loaded: false,
 		dropzoneOptions: {
 			url: "",
@@ -82,6 +82,7 @@ export default {
 				this.series.filter(x => x.title == this.bookseries)[0].id
 			);
 			formData.append("datas[0][no]", this.bookno);
+			this.bookno++;
 		}
 	}
 };
