@@ -5,22 +5,41 @@
 		<br />
 		<v-layout wrap>
 			<v-flex xs12 md6>
-				<v-autocomplete label="系列" :items="seriesTitle" outlined v-model="bookseries" />
+				<v-autocomplete label="系列" :items="series" outlined v-model="bookseries" />
 			</v-flex>
 			<v-flex xs12 md6>
 				<v-text-field v-model="bookno" label="冊數" outlined></v-text-field>
 			</v-flex>
 		</v-layout>
-		<v-layout column v-if="bookseries&&bookno>0">
-			<v-flex>
-				<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" useCustomSlot>
-					<div class="dropzone-custom-content">
-						<h3 class="dropzone-custom-title">將書書拖移到此處上傳</h3>
-						<div class="subtitle">或是點選這裡來選取一個檔案</div>
-					</div>
-				</vue-dropzone>
-			</v-flex>
-		</v-layout>
+		<v-expand-transition>
+			<v-alert
+				color="cyan"
+				border="left"
+				elevation="2"
+				colored-border
+				icon="mdi-book"
+				v-show="!bookseries||!bookno"
+			>
+				<h3 class="headline">哈囉！</h3>
+				<div>請選擇系列並輸入冊數</div>
+				<v-divider class="my-4 info" style="opacity: 0.22"></v-divider>
+				<v-layout>
+					<div>貼心提醒：上傳書本後冊數將自動加一</div>
+				</v-layout>
+			</v-alert>
+		</v-expand-transition>
+		<v-expand-transition>
+			<v-layout column v-show="bookseries&&bookno>0">
+				<v-flex>
+					<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" useCustomSlot>
+						<div class="dropzone-custom-content">
+							<h3 class="dropzone-custom-title">將書書拖移到此處上傳</h3>
+							<div class="subtitle">或是點選這裡來選取一個檔案</div>
+						</div>
+					</vue-dropzone>
+				</v-flex>
+			</v-layout>
+		</v-expand-transition>
 	</div>
 	<div class="text-center" v-else>
 		<v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -72,15 +91,14 @@ export default {
 	}),
 	methods: {
 		async fetchSeries() {
-			this.series = (await this.$axios.get("series")).data;
-			this.seriesTitle = this.series.map(x => x.title);
+			this.series = (await this.$axios.get("series")).data.map(x => ({
+				text: x.title,
+				value: x.id
+			}));
 			this.loaded = true;
 		},
 		beforeSend(file, xhr, formData) {
-			formData.append(
-				"datas[0][series_id]",
-				this.series.filter(x => x.title == this.bookseries)[0].id
-			);
+			formData.append("datas[0][series_id]", this.bookseries);
 			formData.append("datas[0][no]", this.bookno);
 			this.bookno++;
 		}
