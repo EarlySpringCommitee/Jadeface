@@ -62,8 +62,20 @@ export default {
 		series: null,
 		seriesDialog: false,
 		editedIndex: -1,
-		editedItem: { title: "", author: "", desc: "", cover_id: "", id: -1 },
-		defaultItem: { title: "", author: "", desc: "", cover_id: "", id: -1 },
+		editedItem: {
+			title: null,
+			author: null,
+			desc: null,
+			cover_id: null,
+			id: -1
+		},
+		defaultItem: {
+			title: null,
+			author: null,
+			desc: null,
+			cover_id: null,
+			id: -1
+		},
 		headers: [
 			{ text: "編號", value: "id" },
 			{ text: "標題", value: "title" },
