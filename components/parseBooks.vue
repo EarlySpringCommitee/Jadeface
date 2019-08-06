@@ -78,7 +78,7 @@
 			</v-card>
 		</v-dialog>
 		<v-snackbar v-model="sent" :timeout="1500">已發送</v-snackbar>
-		<v-snackbar v-model="nosupport" :timeout="1500">不支援</v-snackbar>
+		<v-snackbar v-model="error" :timeout="1500">發生錯誤</v-snackbar>
 		<v-snackbar v-model="downloadStart" :timeout="1500">已開始下載</v-snackbar>
 	</v-container>
 	<v-container grid-list-md v-else>
@@ -111,7 +111,7 @@ export default {
 		series: null,
 		seriesComplete: null,
 		sent: null,
-		nosupport: null,
+		error: null,
 		downloadStart: null,
 		editedIndex: -1,
 		editedBook: {
@@ -177,7 +177,7 @@ export default {
 					this.forceFileDownload(response);
 					this.downloadStart = true;
 				})
-				.catch(() => (this.nosupport = true));
+				.catch(() => (this.error = true));
 		},
 		async save() {
 			if (this.editedIndex > -1) {
@@ -185,7 +185,7 @@ export default {
 					book: [this.editedBook]
 				});
 			} else {
-				this.nosupport = true;
+				this.error = true;
 			}
 			this.fetchData();
 			this.close();
