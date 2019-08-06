@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<parse-books :books="books" v-if="books" />
-		<!--<pre>{{books}}</pre>-->
+		<parse-books :books="books" :fetchData="fetchData" v-if="books" />
 	</div>
 </template>
 <script>
