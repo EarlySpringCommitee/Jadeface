@@ -177,7 +177,13 @@ export default {
 		async del() {
 			if (!confirm("尼確定要殺掉他嗎")) return;
 			await this.$axios.delete(`book`, {
-				data: { book: [this.editedBook.id] }
+				data: {
+					book: [
+						{
+							id: [this.editedBook.id]
+						}
+					]
+				}
 			});
 			this.close();
 			this.fetchData();
