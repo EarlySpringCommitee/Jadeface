@@ -30,6 +30,9 @@
 		</v-footer>-->
 	</v-app>
 </template>
+<style lang="sass">
+@import "~/assets/style.sass"
+</style>
 
 <script>
 export default {
